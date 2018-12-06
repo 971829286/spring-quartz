@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.hsiang.free.modular.dao.TaskExecutorConfigsMapper" >
+  <resultMap id="BaseResultMap" type="org.hsiang.free.modular.model.TaskExecutorConfigs" >
+    <result column="id" property="id" jdbcType="BIGINT" />
+    <result column="cron" property="cron" jdbcType="VARCHAR" />
+    <result column="job_method" property="jobMethod" jdbcType="VARCHAR" />
+    <result column="project" property="project" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="lazy_load" property="lazyLoad" jdbcType="VARCHAR" />
+    <result column="lazy_time" property="lazyTime" jdbcType="BIGINT" />
+    <result column="execute_number" property="executeNumber" jdbcType="INTEGER" />
+    <result column="execute_time" property="executeTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cron, job_method, project, describe, lazy_load, lazy_time, execute_number, execute_time, 
+    create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.hsiang.free.modular.model.TaskExecutorConfigsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from task_executor_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="org.hsiang.free.modular.model.TaskExecutorConfigsExample" >
+    delete from task_executor_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.hsiang.free.modular.model.TaskExecutorConfigs" >
+    insert into task_executor_configs (id, cron, job_method, 
+      project, describe, lazy_load, 
+      lazy_time, execute_number, execute_time, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{cron,jdbcType=VARCHAR}, #{jobMethod,jdbcType=VARCHAR}, 
+      #{project,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, #{lazyLoad,jdbcType=VARCHAR}, 
+      #{lazyTime,jdbcType=BIGINT}, #{executeNumber,jdbcType=INTEGER}, #{executeTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="org.hsiang.free.modular.model.TaskExecutorConfigs" >
+    insert into task_executor_configs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cron != null" >
+        cron,
+      </if>
+      <if test="jobMethod != null" >
+        job_method,
+      </if>
+      <if test="project != null" >
+        project,
+      </if>
+      <if test="describe != null" >
+        describe,
+      </if>
+      <if test="lazyLoad != null" >
+        lazy_load,
+      </if>
+      <if test="lazyTime != null" >
+        lazy_time,
+      </if>
+      <if test="executeNumber != null" >
+        execute_number,
+      </if>
+      <if test="executeTime != null" >
+        execute_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cron != null" >
+        #{cron,jdbcType=VARCHAR},
+      </if>
+      <if test="jobMethod != null" >
+        #{jobMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="project != null" >
+        #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="lazyLoad != null" >
+        #{lazyLoad,jdbcType=VARCHAR},
+      </if>
+      <if test="lazyTime != null" >
+        #{lazyTime,jdbcType=BIGINT},
+      </if>
+      <if test="executeNumber != null" >
+        #{executeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="executeTime != null" >
+        #{executeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.hsiang.free.modular.model.TaskExecutorConfigsExample" resultType="java.lang.Integer" >
+    select count(*) from task_executor_configs
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update task_executor_configs
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.cron != null" >
+        cron = #{record.cron,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobMethod != null" >
+        job_method = #{record.jobMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.project != null" >
+        project = #{record.project,jdbcType=VARCHAR},
+      </if>
+      <if test="record.describe != null" >
+        describe = #{record.describe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lazyLoad != null" >
+        lazy_load = #{record.lazyLoad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lazyTime != null" >
+        lazy_time = #{record.lazyTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.executeNumber != null" >
+        execute_number = #{record.executeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.executeTime != null" >
+        execute_time = #{record.executeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update task_executor_configs
+    set id = #{record.id,jdbcType=BIGINT},
+      cron = #{record.cron,jdbcType=VARCHAR},
+      job_method = #{record.jobMethod,jdbcType=VARCHAR},
+      project = #{record.project,jdbcType=VARCHAR},
+      describe = #{record.describe,jdbcType=VARCHAR},
+      lazy_load = #{record.lazyLoad,jdbcType=VARCHAR},
+      lazy_time = #{record.lazyTime,jdbcType=BIGINT},
+      execute_number = #{record.executeNumber,jdbcType=INTEGER},
+      execute_time = #{record.executeTime,jdbcType=TIMESTAMP},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

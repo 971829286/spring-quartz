@@ -1,0 +1,44 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+
+
+    master:
+      url: jdbc:mysql://192.168.52.149:3306/quartz?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: 123456
+    cluster:
+      url: jdbc:mysql://192.168.52.149:3306/quartz?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: 123456
+    dbcp2:
+      initial-size: 5
+      min-idle: 5
+
+
+  #添加之后，url可以匹配.html .json等后缀
+  mvc:
+    pathmatch:
+      use-suffix-pattern: true
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+# 配置上下文环境
+server:
+  port: 7200
+  servlet:
+    # 修改上下文路径
+    context-path: /hsiang
+  # 修改端口
+
+# mybatis 配置
+mybatis:
+  type-aliases-package: org.hsiang.free.modular.model
+  #mapper.xml所在位置
+  mapper-locations: classpath:mapper/*.xml
+
+# 引入log4j2配置文件
+logging:
+  config: classpath:log4j2.yml
