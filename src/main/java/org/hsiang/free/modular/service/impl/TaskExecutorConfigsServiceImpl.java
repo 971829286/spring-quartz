@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -32,8 +33,17 @@ public class TaskExecutorConfigsServiceImpl implements TaskExecutorConfigsServic
     }
 
     @Override
-    public TaskExecutorConfigsExample queryById(Integer id) {
-        return null;
+    public TaskExecutorConfigs queryById(Long id) {
+        TaskExecutorConfigs configs = null;
+
+        TaskExecutorConfigsExample example = new TaskExecutorConfigsExample();
+        TaskExecutorConfigsExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(id);
+        List<TaskExecutorConfigs> configsList = taskExecutorConfigsMapper.selectByExample(example);
+        if (!CollectionUtils.isEmpty(configsList)) {
+            configs = configsList.get(0);
+        }
+        return configs;
     }
 
     @Override

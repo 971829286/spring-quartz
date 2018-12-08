@@ -9,7 +9,7 @@ public interface TaskExecutorConfigsService {
 
     public List<TaskExecutorConfigs> queryByExample(TaskExecutorConfigsExample example);
 
-    public TaskExecutorConfigsExample queryById(Integer id);
+    public TaskExecutorConfigs queryById(Long id);
 
     public Boolean saveTaskExecutorConfigs(TaskExecutorConfigsExample example);
 
